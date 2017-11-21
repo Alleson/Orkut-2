@@ -1,5 +1,6 @@
 package com.braincorp.orkut2.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -74,7 +75,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
     private void createAccount() {
-        // TODO: open create account activity
+        Intent intent = new Intent(LoginActivity.this, CreateUserActivity.class);
+        startActivity(intent);
     }
 
 }

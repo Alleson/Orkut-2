@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">Orkut 2</string>
     <string name="create_account">criar conta</string>
+    <string name="date_of_birth">data de nascimento</string>
+    <string name="error_creating_user">Erro ao criar usuário</string>
+    <string name="full_name">nome completo</string>
     <string name="invalid_user_name_or_password">Usuário ou senha inválido</string>
+    <string name="new_user">Novo usuário</string>
     <string name="password">senha</string>
     <string name="sign_in">entrar</string>
     <string name="user_name">nome de usuário</string>
