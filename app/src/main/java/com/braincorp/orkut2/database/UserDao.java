@@ -84,6 +84,24 @@ public class UserDao extends Dao {
         }
     }
 
+    public User select(String userName, String password) {
+        if (!reader.isOpen())
+            openDatabase();
+        String selection = String.format("%1$s = ? AND %2$s = ?",
+                Column.USER_NAME,
+                Column.PASSWORD);
+        String[] selectionArgs = new String[] {userName, password};
+        final String orderBy = null;
+        Cursor cursor = reader.query(TABLE_NAME, COLUMNS, selection, selectionArgs,
+                GROUP_BY, HAVING, orderBy, LIMIT);
+        if (cursor.getCount() > 0) {
+            return buildEntity(cursor);
+        } else {
+            reader.close();
+            return null;
+        }
+    }
+
     public boolean update(User user) {
         if (!writer.isOpen())
             openDatabase();
@@ -95,18 +113,34 @@ public class UserDao extends Dao {
         return success;
     }
 
+    private User buildEntity(Cursor cursor) {
+        cursor.moveToFirst();
+
+        long id = cursor.getLong(cursor.getColumnIndex(Column.ID));
+        String userName = cursor.getString(cursor.getColumnIndex(Column.USER_NAME));
+        String password = cursor.getString(cursor.getColumnIndex(Column.PASSWORD));
+        String fullName = cursor.getString(cursor.getColumnIndex(Column.FULL_NAME));
+        long dateInMillis = cursor.getLong(cursor.getColumnIndex(Column.DATE_OF_BIRTH));
+        Date dateOfBirth = new Date(dateInMillis);
+
+        User.Builder userBuilder = new User.Builder().setId(id)
+                .setUserName(userName)
+                .setPassword(password)
+                .setFullName(fullName)
+                .setDateOfBirth(dateOfBirth);
+        cursor.close();
+        reader.close();
+        return userBuilder.build();
+    }
+
     private User buildEntity(Cursor cursor, long id) {
         cursor.moveToFirst();
-        String userName;
-        String password;
-        String fullName;
-        Date dateOfBirth;
 
-        userName = cursor.getString(cursor.getColumnIndex(Column.USER_NAME));
-        password = cursor.getString(cursor.getColumnIndex(Column.PASSWORD));
-        fullName = cursor.getString(cursor.getColumnIndex(Column.FULL_NAME));
+        String userName = cursor.getString(cursor.getColumnIndex(Column.USER_NAME));
+        String password = cursor.getString(cursor.getColumnIndex(Column.PASSWORD));
+        String fullName = cursor.getString(cursor.getColumnIndex(Column.FULL_NAME));
         long dateInMillis = cursor.getLong(cursor.getColumnIndex(Column.DATE_OF_BIRTH));
-        dateOfBirth = new Date(dateInMillis);
+        Date dateOfBirth = new Date(dateInMillis);
 
         User.Builder userBuilder = new User.Builder().setId(id)
                 .setUserName(userName)
