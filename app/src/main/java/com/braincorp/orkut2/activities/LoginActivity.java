@@ -1,6 +1,7 @@
 package com.braincorp.orkut2.activities;
 
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -65,7 +66,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if (validCredentials) {
             // TODO: authenticate
         } else {
-            // TODO: show error message
+            View focus = getCurrentFocus();
+            if (focus != null)
+                Snackbar.make(focus, R.string.invalid_user_name_or_password, Snackbar.LENGTH_LONG)
+                        .show();
         }
     }
 
