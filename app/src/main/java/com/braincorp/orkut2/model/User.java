@@ -2,17 +2,20 @@ package com.braincorp.orkut2.model;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.util.Date;
 
 public class User implements Parcelable {
 
     public static final Creator CREATOR = new Creator() {
+        @NonNull
         @Override
         public User createFromParcel(Parcel in) {
             return new User(in);
         }
 
+        @NonNull
         @Override
         public User[] newArray(int size) {
             return new User[size];
