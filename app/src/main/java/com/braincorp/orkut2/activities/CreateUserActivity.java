@@ -90,15 +90,17 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         String password = editTextPassword.getText().toString();
         String fullName = editTextFullName.getText().toString();
         String dateOfBirthStr = editTextDateOfBirth.getText().toString();
-        Date dateOfBirth = convertStringToDate(dateOfBirthStr);
 
-        User user = new User.Builder().setUserName(userName)
+        User.Builder userBuilder = new User.Builder().setUserName(userName)
                 .setPassword(password)
-                .setFullName(fullName)
-                .setDateOfBirth(dateOfBirth)
-                .build();
+                .setFullName(fullName);
 
-        return database.insert(user) > 0;
+        if (!dateOfBirthStr.equals("")) {
+            Date dateOfBirth = convertStringToDate(dateOfBirthStr);
+            userBuilder.setDateOfBirth(dateOfBirth);
+        }
+
+        return database.insert(userBuilder.build()) > 0;
     }
 
     private void setActionBar() {
