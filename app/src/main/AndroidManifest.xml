@@ -26,6 +26,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.braincorp.orkut2.activities.LoginActivity" />
         </activity>
+        <activity android:name=".activities.HomePageActivity"></activity>
     </application>
 
 </manifest>

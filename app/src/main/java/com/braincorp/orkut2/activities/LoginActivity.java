@@ -65,7 +65,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         User user = database.select(userName, password);
         boolean validCredentials = user != null;
         if (validCredentials) {
-            // TODO: authenticate
+            Intent intent = HomePageActivity.getIntent(this, user);
+            startActivity(intent);
         } else {
             View focus = getCurrentFocus();
             if (focus != null)

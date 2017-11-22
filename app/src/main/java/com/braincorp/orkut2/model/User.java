@@ -1,8 +1,23 @@
 package com.braincorp.orkut2.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class User {
+public class User implements Parcelable {
+
+    public static final Creator CREATOR = new Creator() {
+        @Override
+        public User createFromParcel(Parcel in) {
+            return new User(in);
+        }
+
+        @Override
+        public User[] newArray(int size) {
+            return new User[size];
+        }
+    };
 
     private long id;
     private String userName;
@@ -11,6 +26,14 @@ public class User {
     private Date dateOfBirth;
 
     private User() { }
+
+    private User(Parcel in) {
+        id = in.readLong();
+        userName = in.readString();
+        password = in.readString();
+        fullName = in.readString();
+        dateOfBirth = new Date(in.readLong());
+    }
 
     public long getId() {
         return id;
@@ -24,7 +47,7 @@ public class User {
         return userName;
     }
 
-    public void setUserName(String userName) {
+    void setUserName(String userName) {
         this.userName = userName;
     }
 
@@ -40,7 +63,7 @@ public class User {
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
@@ -48,8 +71,22 @@ public class User {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        parcel.writeLong(id);
+        parcel.writeString(userName);
+        parcel.writeString(password);
+        parcel.writeString(fullName);
+        parcel.writeLong(dateOfBirth.getTime());
     }
 
     public static class Builder {
