@@ -1,22 +1,16 @@
 package com.braincorp.orkut2.activities
 
-import android.support.test.espresso.intent.Intents
 import android.support.test.runner.AndroidJUnit4
+import com.braincorp.orkut2.BaseTest
 import com.braincorp.orkut2.robots.LoginActivityRobot
-import org.junit.After
 import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class LoginActivityTest {
+class LoginActivityTest : BaseTest() {
 
     private val robot = LoginActivityRobot()
-
-    @After
-    fun after() {
-        Intents.release()
-    }
 
     @Test
     fun shouldOpenCreateUserActivityWhenClickingOnCreateUser() {
