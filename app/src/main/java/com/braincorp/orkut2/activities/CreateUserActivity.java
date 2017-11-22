@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 
@@ -90,6 +91,9 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         String password = editTextPassword.getText().toString();
         String fullName = editTextFullName.getText().toString();
         String dateOfBirthStr = editTextDateOfBirth.getText().toString();
+
+        if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(password) || TextUtils.isEmpty(fullName))
+            return false;
 
         User.Builder userBuilder = new User.Builder().setUserName(userName)
                 .setPassword(password)

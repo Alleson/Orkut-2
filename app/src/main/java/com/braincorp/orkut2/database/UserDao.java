@@ -156,7 +156,8 @@ public class UserDao extends Dao {
         values.put(Column.USER_NAME, user.getUserName());
         values.put(Column.PASSWORD, user.getPassword());
         values.put(Column.FULL_NAME, user.getFullName());
-        values.put(Column.DATE_OF_BIRTH, user.getDateOfBirth().getTime());
+        if (user.getDateOfBirth() != null)
+            values.put(Column.DATE_OF_BIRTH, user.getDateOfBirth().getTime());
     }
 
     private List<User> queryUsers(Cursor cursor) {
