@@ -31,12 +31,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btSignIn:
-                clearEditTexts();
                 signIn();
+                clearEditTexts();
                 break;
             case R.id.btCreateAccount:
-                clearEditTexts();
                 createAccount();
+                clearEditTexts();
                 break;
         }
     }

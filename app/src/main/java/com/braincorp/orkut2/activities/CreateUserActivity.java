@@ -98,7 +98,7 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
                 .setDateOfBirth(dateOfBirth)
                 .build();
 
-        return database.insert(user) > 0; // FIXME
+        return database.insert(user) > 0;
     }
 
     private void setActionBar() {
