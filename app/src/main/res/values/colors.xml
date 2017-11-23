@@ -5,5 +5,6 @@
     <color name="pink">#FF4081</color>
     <color name="purple">#7E57C2</color>
     <color name="purple_dark">#673AB7</color>
+    <color name="purple_light">#EDE7F6</color>
     <color name="white">#FFFFFF</color>
 </resources>
