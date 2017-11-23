@@ -20,6 +20,7 @@
     <style name="ButtonWithIcon">
         <item name="android:layout_width">130dp</item>
         <item name="android:layout_height">160dp</item>
+        <item name="android:layout_marginBottom">20dp</item>
     </style>
 
 </resources>

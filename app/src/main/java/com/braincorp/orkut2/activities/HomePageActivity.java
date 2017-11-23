@@ -107,10 +107,10 @@ public class HomePageActivity extends AppCompatActivity {
     }
 
     private void showOptionsFragment() {
-        OptionsFragment fragment = new OptionsFragment();
+        OptionsFragment fragment = OptionsFragment.newInstance(user);
         FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction()
-                .replace(R.id.placeholder_menu, fragment)
+                .replace(R.id.placeholder_options, fragment)
                 .commit();
     }
 
