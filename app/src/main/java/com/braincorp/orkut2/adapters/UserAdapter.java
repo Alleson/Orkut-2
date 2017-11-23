@@ -43,9 +43,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     public void onBindViewHolder(UserHolder holder, int position) {
         User user = data.get(position);
         holder.textViewName.setText(user.getFullName());
-        String ageText = String.format(context.getString(R.string.age),
-                calculateAge(user.getDateOfBirth()));
-        holder.textViewAge.setText(ageText);
+        if (user.getDateOfBirth() != null) {
+            String ageText = String.format(context.getString(R.string.age),
+                    calculateAge(user.getDateOfBirth()));
+            holder.textViewAge.setText(ageText);
+        }
     }
 
     @Override
