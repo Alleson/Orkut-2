@@ -101,7 +101,7 @@ public class FriendsListActivity extends AppCompatActivity implements OnItemClic
         recyclerView.setAdapter(adapter);
     }
 
-    private void parseIntent() { // FIXME
+    private void parseIntent() {
         showFriends = getIntent().getBooleanExtra(EXTRA_SHOW_FRIENDS, false);
         user = getIntent().getParcelableExtra(EXTRA_USER);
     }

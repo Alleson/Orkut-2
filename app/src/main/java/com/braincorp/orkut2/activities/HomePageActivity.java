@@ -82,7 +82,7 @@ public class HomePageActivity extends AppCompatActivity {
         textViewWelcome = findViewById(R.id.textViewWelcome);
     }
 
-    private void parseIntent() {
+    private void parseIntent() { // FIXME
         user = getIntent().getParcelableExtra(EXTRA_USER);
     }
 
