@@ -46,7 +46,7 @@ public class ButtonWithIcon extends CardView {
     }
 
     private void init(Context context, AttributeSet attributes) {
-        setRadius(5);
+        setRadius(context.getResources().getDimension(R.dimen.card_corner_radius));
         ViewGroup root = this;
         final boolean attachToRoot = true;
         LayoutInflater.from(context).inflate(R.layout.view_button_with_icon, root, attachToRoot);
