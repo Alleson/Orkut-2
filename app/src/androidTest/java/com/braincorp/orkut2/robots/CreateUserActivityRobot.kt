@@ -24,7 +24,7 @@ class CreateUserActivityRobot {
     }
 
     @Rule
-    val rule = IntentsTestRule<CreateUserActivity>(CreateUserActivity::class.java,
+    private val rule = IntentsTestRule<CreateUserActivity>(CreateUserActivity::class.java,
             INITIAL_TOUCH_MODE, LAUNCH_ACTIVITY)
 
     fun launchActivity(): CreateUserActivityRobot {

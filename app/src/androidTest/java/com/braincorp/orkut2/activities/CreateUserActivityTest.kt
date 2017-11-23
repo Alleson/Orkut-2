@@ -3,7 +3,7 @@ package com.braincorp.orkut2.activities
 import android.support.test.InstrumentationRegistry
 import android.support.test.espresso.intent.Intents
 import android.support.test.runner.AndroidJUnit4
-import com.braincorp.orkut2.BaseTest
+import com.braincorp.orkut2.utils.BaseTest
 import com.braincorp.orkut2.database.UserDao
 import com.braincorp.orkut2.robots.CreateUserActivityRobot
 import org.junit.After
@@ -25,7 +25,7 @@ class CreateUserActivityTest : BaseTest() {
     }
 
     @Test
-    @Ignore
+    @Ignore // TODO: remove this
     fun shouldOpenLoginActivityIfAllFieldsAreFilled() {
         robot.launchActivity()
                 .typeUserName()
@@ -41,7 +41,7 @@ class CreateUserActivityTest : BaseTest() {
     }
 
     @Test
-    @Ignore
+    @Ignore // TODO: remove this
     fun shouldOpenLoginActivityIfUserNamePasswordAndFullNameAreFilled() {
         robot.launchActivity()
                 .typeUserName()

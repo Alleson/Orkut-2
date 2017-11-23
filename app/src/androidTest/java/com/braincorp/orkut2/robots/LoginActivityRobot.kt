@@ -25,7 +25,7 @@ class LoginActivityRobot {
     }
 
     @Rule
-    val rule = IntentsTestRule<LoginActivity>(LoginActivity::class.java, INITIAL_TOUCH_MODE,
+    private val rule = IntentsTestRule<LoginActivity>(LoginActivity::class.java, INITIAL_TOUCH_MODE,
             LAUNCH_ACTIVITY)
 
     fun launchActivity(): LoginActivityRobot {

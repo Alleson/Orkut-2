@@ -1,5 +1,6 @@
 package com.braincorp.orkut2.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braincorp.orkut2.R;
+import com.braincorp.orkut2.activities.FriendsListActivity;
 import com.braincorp.orkut2.model.User;
 import com.braincorp.orkut2.view.ButtonWithIcon;
 
@@ -24,6 +26,8 @@ public class OptionsFragment extends Fragment implements View.OnClickListener {
         return fragment;
     }
 
+    private User user;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -31,6 +35,7 @@ public class OptionsFragment extends Fragment implements View.OnClickListener {
                              @Nullable Bundle savedInstanceState) {
         final boolean attachToRoot = false;
         View view = inflater.inflate(R.layout.fragment_options, container, attachToRoot);
+        parseArgs();
         bindViews(view);
         return view;
     }
@@ -39,10 +44,10 @@ public class OptionsFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.buttonAddFriends:
-                // TODO: add friends
+                startFriendsListActivity(false);
                 break;
             case R.id.buttonMyFriends:
-                // TODO: my friends
+                startFriendsListActivity(true);
                 break;
         }
     }
@@ -53,6 +58,18 @@ public class OptionsFragment extends Fragment implements View.OnClickListener {
 
         buttonAddFriends.setOnClickListener(this);
         buttonMyFriends.setOnClickListener(this);
+    }
+
+    private void parseArgs() {
+        Bundle args = getArguments();
+        if (args == null)
+            return;
+        user = args.getParcelable(ARG_USER);
+    }
+
+    private void startFriendsListActivity(boolean showFriends) {
+        Intent intent = FriendsListActivity.getIntent(getContext(), showFriends, user);
+        startActivity(intent);
     }
 
 }

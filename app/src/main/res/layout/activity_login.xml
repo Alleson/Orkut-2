@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:paddingTop="16dp"
+    android:paddingStart="@dimen/default_activity_padding"
+    android:paddingEnd="@dimen/default_activity_padding"
+    android:paddingTop="@dimen/default_activity_padding"
     android:paddingBottom="24dp"
     tools:context="com.braincorp.orkut2.activities.LoginActivity">
 

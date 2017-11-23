@@ -1,7 +1,7 @@
 package com.braincorp.orkut2.activities
 
 import android.support.test.runner.AndroidJUnit4
-import com.braincorp.orkut2.BaseTest
+import com.braincorp.orkut2.utils.BaseTest
 import com.braincorp.orkut2.robots.LoginActivityRobot
 import org.junit.Ignore
 import org.junit.Test
