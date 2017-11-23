@@ -13,7 +13,6 @@ import android.widget.EditText;
 import com.braincorp.orkut2.R;
 import com.braincorp.orkut2.database.UserDao;
 import com.braincorp.orkut2.model.User;
-import com.eduardosantana.grafos.grafo.Grafo;
 
 import java.util.Calendar;
 import java.util.Date;
