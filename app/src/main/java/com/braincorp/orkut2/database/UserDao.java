@@ -13,7 +13,7 @@ import java.util.List;
 
 public class UserDao extends Dao {
 
-    private static final String TABLE_NAME = "USERS";
+    public static final String TABLE_NAME = "USERS";
     private static final String WHERE_CLAUSE = String.format("%1$s = ?", Column.ID);
     private static final String[] COLUMNS = null;
     private static final String GROUP_BY = null;
@@ -68,6 +68,20 @@ public class UserDao extends Dao {
         return users;
     }
 
+    public List<User> select(String sql) {
+        if (!reader.isOpen())
+            openDatabase();
+        List<User> users = new ArrayList<>();
+        Cursor cursor = reader.rawQuery(sql, null);
+        if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
+            users = queryUsers(cursor);
+        }
+        cursor.close();
+        reader.close();
+        return users;
+    }
+
     public User select(int id) {
         if (!reader.isOpen())
             openDatabase();
@@ -77,8 +91,10 @@ public class UserDao extends Dao {
         Cursor cursor = reader.query(TABLE_NAME, COLUMNS, selection, selectionArgs,
                                      GROUP_BY, HAVING, orderBy, LIMIT);
         if (cursor.getCount() > 0) {
+            cursor.moveToFirst();
             return buildEntity(cursor, id);
         } else {
+            cursor.close();
             reader.close();
             return null;
         }
@@ -134,8 +150,6 @@ public class UserDao extends Dao {
     }
 
     private User buildEntity(Cursor cursor, long id) {
-        cursor.moveToFirst();
-
         String userName = cursor.getString(cursor.getColumnIndex(Column.USER_NAME));
         String password = cursor.getString(cursor.getColumnIndex(Column.PASSWORD));
         String fullName = cursor.getString(cursor.getColumnIndex(Column.FULL_NAME));
@@ -147,8 +161,6 @@ public class UserDao extends Dao {
                 .setPassword(password)
                 .setFullName(fullName)
                 .setDateOfBirth(dateOfBirth);
-        cursor.close();
-        reader.close();
         return userBuilder.build();
     }
 

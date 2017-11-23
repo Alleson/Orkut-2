@@ -9,10 +9,8 @@ abstract class Dao {
 
     SQLiteDatabase reader;
     SQLiteDatabase writer;
-    private Context context;
 
     Dao(Context context) {
-        this.context = context;
         helper = new DatabaseHelper(context);
         openDatabase();
     }
