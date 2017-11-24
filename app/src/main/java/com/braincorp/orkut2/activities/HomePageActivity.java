@@ -16,6 +16,7 @@ import com.braincorp.orkut2.R;
 import com.braincorp.orkut2.database.UserDao;
 import com.braincorp.orkut2.fragments.OptionsFragment;
 import com.braincorp.orkut2.model.User;
+import com.braincorp.orkut2.utils.MatrixHandler;
 
 public class HomePageActivity extends AppCompatActivity {
 
@@ -100,6 +101,8 @@ public class HomePageActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
                         UserDao.getInstance(getApplicationContext()).delete(user);
+                        MatrixHandler matrix = MatrixHandler.getInstance();
+                        matrix.remove(user);
                         finish();
                     }
                 })

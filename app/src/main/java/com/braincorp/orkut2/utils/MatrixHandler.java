@@ -44,18 +44,15 @@ public class MatrixHandler {
      * @param user the user to be removed
      * @return the ID of the user removed
      */
-
     public long remove (User user){
-        long aux;
-
-        for (long[] row : matrix) {
-            if(row[0] == user.getId()) {
-                aux = user.getId();
-                row[0] = 0;
-                return aux;
+        for (int row = 0; row < matrix.length; row++) {
+            for (int column = 0; column < matrix.length; column++) {
+                if(matrix[row][column] == user.getId()) {
+                    matrix[row][column] = 0;
+                }
             }
         }
-        return 0;
+        return user.getId();
     }
 
     public long[][] getMatrix() {
