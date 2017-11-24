@@ -132,7 +132,7 @@ public class UserDao extends Dao {
     private User buildEntity(Cursor cursor) {
         cursor.moveToFirst();
 
-        long id = cursor.getLong(cursor.getColumnIndex(Column.ID));
+        int id = cursor.getInt(cursor.getColumnIndex(Column.ID));
         String userName = cursor.getString(cursor.getColumnIndex(Column.USER_NAME));
         String password = cursor.getString(cursor.getColumnIndex(Column.PASSWORD));
         String fullName = cursor.getString(cursor.getColumnIndex(Column.FULL_NAME));
@@ -149,7 +149,7 @@ public class UserDao extends Dao {
         return userBuilder.build();
     }
 
-    private User buildEntity(Cursor cursor, long id) {
+    private User buildEntity(Cursor cursor, int id) {
         String userName = cursor.getString(cursor.getColumnIndex(Column.USER_NAME));
         String password = cursor.getString(cursor.getColumnIndex(Column.PASSWORD));
         String fullName = cursor.getString(cursor.getColumnIndex(Column.FULL_NAME));

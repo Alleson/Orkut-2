@@ -27,7 +27,7 @@ public class MatrixHandlerTest {
                 .setFullName("Alleson Albuquerque").build();
         MatrixHandler matrix = MatrixHandler.getInstance();
         matrix.add(user);
-        long id = matrix.remove(user);
+        int id = matrix.remove(user);
         assertEquals(matrix.getMatrix()[0][0], 0);
         assertEquals(id, 1234);
 

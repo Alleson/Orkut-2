@@ -22,7 +22,7 @@ public class User implements Parcelable {
         }
     };
 
-    private long id;
+    private int id;
     private String userName;
     private String password;
     private String fullName;
@@ -31,18 +31,18 @@ public class User implements Parcelable {
     private User() { }
 
     private User(Parcel in) {
-        id = in.readLong();
+        id = in.readInt();
         userName = in.readString();
         password = in.readString();
         fullName = in.readString();
         dateOfBirth = new Date(in.readLong());
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -100,7 +100,7 @@ public class User implements Parcelable {
             user = new User();
         }
 
-        public Builder setId(long id) {
+        public Builder setId(int id) {
             user.setId(id);
             return this;
         }
