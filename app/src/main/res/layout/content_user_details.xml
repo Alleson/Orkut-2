@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/default_activity_padding"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.braincorp.orkut2.activities.UserDetailsActivity"
+    tools:showIn="@layout/activity_user_details">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:src="@drawable/ic_user"
+        tools:ignore="contentDescription"/>
+
+    <TextView
+        style="@style/Header"
+        android:id="@+id/textViewName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Alan Camargo"/>
+
+    <View
+        style="@style/Divider"
+        android:id="@+id/dividerTop"
+        android:layout_below="@id/textViewName"/>
+
+    <TextView
+        android:id="@+id/textViewDateOfBirth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dividerTop"
+        android:textColor="@color/black"
+        tools:text="Date of birth: 03/08/1992"/>
+
+    <TextView
+        android:id="@+id/textViewAge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textViewDateOfBirth"
+        android:textColor="@color/black"
+        tools:text="Age: 25"/>
+
+    <View
+        style="@style/Divider"
+        android:id="@+id/dividerBottom"
+        android:layout_below="@id/textViewAge"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dividerBottom"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/ButtonRoundedCorners"
+            android:id="@+id/buttonAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="@string/add"/>
+
+        <Button
+            style="@style/ButtonRoundedCornersTransparent"
+            android:id="@+id/buttonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/delete"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

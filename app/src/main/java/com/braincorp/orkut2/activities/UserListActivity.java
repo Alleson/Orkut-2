@@ -21,13 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class FriendsListActivity extends AppCompatActivity implements OnItemClickListener {
+public class UserListActivity extends AppCompatActivity implements OnItemClickListener {
 
     public static final String EXTRA_SHOW_FRIENDS = "show_friends";
     public static final String EXTRA_USER = "user";
 
     public static Intent getIntent(Context context, boolean showFriends, User user) {
-        Intent intent = new Intent(context, FriendsListActivity.class);
+        Intent intent = new Intent(context, UserListActivity.class);
         intent.putExtra(EXTRA_SHOW_FRIENDS, showFriends);
         intent.putExtra(EXTRA_USER, user);
         return intent;
@@ -71,7 +71,8 @@ public class FriendsListActivity extends AppCompatActivity implements OnItemClic
             }
         }
         if (user != null) {
-            // TODO: open UserActivity
+            Intent intent = UserDetailsActivity.getIntent(this, this.user, user);
+            startActivity(intent);
         }
     }
 
