@@ -44,7 +44,7 @@ public class MatrixHandler {
      * @param user the user to be removed
      * @return the ID of the user removed
      */
-    public long remove (User user){
+    public int remove (User user){
         for (int row = 0; row < matrix.length; row++) {
             for (int column = 0; column < matrix.length; column++) {
                 if(matrix[row][column] == user.getId()) {
@@ -63,7 +63,7 @@ public class MatrixHandler {
         return matrix;
     }
 
-    
+
 
 
 }
