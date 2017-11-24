@@ -8,22 +8,16 @@
     tools:context="com.braincorp.orkut2.activities.HomePageActivity">
 
     <TextView
+        style="@style/Header"
         android:id="@+id/textViewWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black"
-        android:textSize="20sp"
         tools:text="Bem-vindo, Alan Camargo!"/>
 
     <View
+        style="@style/Divider"
         android:id="@+id/divider"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@id/textViewWelcome"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/grey"/>
+        android:layout_below="@id/textViewWelcome" />
 
     <FrameLayout
         android:id="@+id/placeholder_options"

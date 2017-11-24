@@ -12,7 +12,7 @@ import android.view.MenuItem;
 
 import com.braincorp.orkut2.R;
 import com.braincorp.orkut2.adapters.UserAdapter;
-import com.braincorp.orkut2.database.Column;
+import com.braincorp.orkut2.database.Sql;
 import com.braincorp.orkut2.database.UserDao;
 import com.braincorp.orkut2.listeners.OnItemClickListener;
 import com.braincorp.orkut2.model.User;
@@ -21,13 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class FriendsListActivity extends AppCompatActivity implements OnItemClickListener {
+public class UserListActivity extends AppCompatActivity implements OnItemClickListener {
 
     public static final String EXTRA_SHOW_FRIENDS = "show_friends";
     public static final String EXTRA_USER = "user";
 
     public static Intent getIntent(Context context, boolean showFriends, User user) {
-        Intent intent = new Intent(context, FriendsListActivity.class);
+        Intent intent = new Intent(context, UserListActivity.class);
         intent.putExtra(EXTRA_SHOW_FRIENDS, showFriends);
         intent.putExtra(EXTRA_USER, user);
         return intent;
@@ -62,7 +62,8 @@ public class FriendsListActivity extends AppCompatActivity implements OnItemClic
 
     @Override
     public void onItemClick(int position) {
-        List<User> users = database.select();
+        String sql = String.format(Locale.getDefault(), Sql.ALL_OTHER_USERS, this.user.getId());
+        List<User> users = database.select(sql);
         User user = null;
         for (int i = 0; i < users.size(); i++) {
             if (i == position) {
@@ -71,7 +72,8 @@ public class FriendsListActivity extends AppCompatActivity implements OnItemClic
             }
         }
         if (user != null) {
-            // TODO: open UserActivity
+            Intent intent = UserDetailsActivity.getIntent(this, this.user, user);
+            startActivity(intent);
         }
     }
 
@@ -92,9 +94,7 @@ public class FriendsListActivity extends AppCompatActivity implements OnItemClic
         if (showFriends) {
             data = new ArrayList<>(); // TODO: implement show friends flow
         } else {
-            String sql = String.format(Locale.getDefault(),
-                    "SELECT * FROM %1$s WHERE %2$s <> %3$d",
-                    UserDao.TABLE_NAME, Column.ID, user.getId());
+            String sql = String.format(Locale.getDefault(), Sql.ALL_OTHER_USERS, user.getId());
             data = database.select(sql);
         }
         UserAdapter adapter = new UserAdapter(this, data, this);

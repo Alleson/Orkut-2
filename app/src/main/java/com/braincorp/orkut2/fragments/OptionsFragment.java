@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.braincorp.orkut2.R;
-import com.braincorp.orkut2.activities.FriendsListActivity;
+import com.braincorp.orkut2.activities.UserListActivity;
 import com.braincorp.orkut2.model.User;
 import com.braincorp.orkut2.view.ButtonWithIcon;
 
@@ -68,7 +68,7 @@ public class OptionsFragment extends Fragment implements View.OnClickListener {
     }
 
     private void startFriendsListActivity(boolean showFriends) {
-        Intent intent = FriendsListActivity.getIntent(getContext(), showFriends, user);
+        Intent intent = UserListActivity.getIntent(getContext(), showFriends, user);
         startActivity(intent);
     }
 

@@ -9,7 +9,7 @@ import android.support.test.espresso.intent.matcher.IntentMatchers.hasExtra
 import android.support.test.espresso.matcher.ViewMatchers.withId
 import com.android21buttons.fragmenttestrule.FragmentTestRule
 import com.braincorp.orkut2.R
-import com.braincorp.orkut2.activities.FriendsListActivity
+import com.braincorp.orkut2.activities.UserListActivity
 import com.braincorp.orkut2.activities.TestActivity
 import com.braincorp.orkut2.fragments.OptionsFragment
 import com.braincorp.orkut2.utils.ObjectMocker
@@ -40,17 +40,17 @@ class OptionsFragmentRobot {
     }
 
     fun checkIfLeadsToFriendsListActivity(): OptionsFragmentRobot {
-        intended(hasComponent(FriendsListActivity::class.java.name))
+        intended(hasComponent(UserListActivity::class.java.name))
         return this
     }
 
     fun checkIfShowFriendsFlagIsTrue(): OptionsFragmentRobot {
-        intended(hasExtra(FriendsListActivity.EXTRA_SHOW_FRIENDS, true))
+        intended(hasExtra(UserListActivity.EXTRA_SHOW_FRIENDS, true))
         return this
     }
 
     fun checkIfShowFriendsFlagIsFalse(): OptionsFragmentRobot {
-        intended(hasExtra(FriendsListActivity.EXTRA_SHOW_FRIENDS, false))
+        intended(hasExtra(UserListActivity.EXTRA_SHOW_FRIENDS, false))
         return this
     }
 
