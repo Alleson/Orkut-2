@@ -13,7 +13,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.braincorp.orkut2.R;
-import com.braincorp.orkut2.database.UserDao;
+import com.braincorp.orkut2.database.Database;
 import com.braincorp.orkut2.fragments.OptionsFragment;
 import com.braincorp.orkut2.model.User;
 import com.braincorp.orkut2.utils.MatrixHandler;
@@ -101,9 +101,8 @@ public class HomePageActivity extends AppCompatActivity {
                 .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int which) {
-                        UserDao.getInstance(getApplicationContext()).delete(user);
-                        MatrixHandler matrix = MatrixHandler.getInstance();
-                        matrix.remove(user);
+                        Database.getInstance().delete(user);
+                        MatrixHandler.getInstance().remove(user);
                         finish();
                     }
                 })

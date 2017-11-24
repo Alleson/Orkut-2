@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.braincorp.orkut2.R;
-import com.braincorp.orkut2.database.UserDao;
+import com.braincorp.orkut2.database.Database;
 import com.braincorp.orkut2.model.User;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -17,13 +17,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextUserName;
     private EditText editTextPassword;
 
-    private UserDao database;
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        database = UserDao.getInstance(this);
+        database = Database.getInstance();
         bindViews();
     }
 
