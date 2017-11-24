@@ -84,8 +84,19 @@ public class User implements Parcelable {
     }
 
     @Override
+    public String toString() {
+        return "User {"+
+                "id = '" + id + '\'' +
+                ", userName = '" + userName + '\'' +
+                ", password = '" + password + '\'' +
+                ", fullName = '" + fullName + '\'' +
+                ", dateOfBirth = '" + dateOfBirth.getTime() + '\'' +
+                '}';
+    }
+
+    @Override
     public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeLong(id);
+        parcel.writeInt(id);
         parcel.writeString(userName);
         parcel.writeString(password);
         parcel.writeString(fullName);

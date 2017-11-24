@@ -38,7 +38,7 @@ public class HomePageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         parseIntent();
         bindViews();
-        setTexts();
+        setWelcomeText();
         showOptionsFragment();
     }
 
@@ -77,17 +77,18 @@ public class HomePageActivity extends AppCompatActivity {
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         user = savedInstanceState.getParcelable(EXTRA_USER);
+        setWelcomeText();
     }
 
     private void bindViews() {
         textViewWelcome = findViewById(R.id.textViewWelcome);
     }
 
-    private void parseIntent() { // FIXME
+    private void parseIntent() {
         user = getIntent().getParcelableExtra(EXTRA_USER);
     }
 
-    private void setTexts() {
+    private void setWelcomeText() {
         String welcomeText = String.format(getString(R.string.welcome), user.getFullName());
         textViewWelcome.setText(welcomeText);
     }
