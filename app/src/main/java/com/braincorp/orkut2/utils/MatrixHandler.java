@@ -24,14 +24,14 @@ public class MatrixHandler {
     }
 
 
-    private long[][] matrix = new long[50][50];
+    private int[][] matrix = new int[50][50];
 
 
     /**
      * Adds a user
      */
     public void add (User user) {
-        for (long[] row : matrix) {
+        for (int[] row : matrix) {
             if(row[0] == 0) {
                 row[0] = user.getId();
                 break;
@@ -55,7 +55,15 @@ public class MatrixHandler {
         return user.getId();
     }
 
-    public long[][] getMatrix() {
+    /**
+     * Get the matrix
+     * @return the adjacent matrix
+     */
+    public int[][] getMatrix() {
         return matrix;
     }
+
+    
+
+
 }
