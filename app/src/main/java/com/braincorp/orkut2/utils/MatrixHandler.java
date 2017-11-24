@@ -18,14 +18,9 @@ public class MatrixHandler {
         return instance;
     }
 
-
-    private MatrixHandler() {
-
-    }
-
+    private MatrixHandler() { }
 
     private int[][] matrix = new int[50][50];
-
 
     /**
      * Adds a user
@@ -64,6 +59,22 @@ public class MatrixHandler {
     }
 
 
-
+    /**
+     * Determines whether a user is friends with another
+     * @param loggedUser the user currently logged in
+     * @param targetUser the user to validate friendship status
+     * @return {@code true} if positive
+     */
+    public boolean areFriends(User loggedUser, User targetUser) {
+        for (int[] row : matrix) {
+            if (row[0] == loggedUser.getId()) {
+                for (int id : row) {
+                    if (id == targetUser.getId())
+                        return true;
+                }
+            }
+        }
+        return false;
+    }
 
 }
