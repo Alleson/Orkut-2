@@ -10,14 +10,9 @@ import android.widget.TextView;
 import com.braincorp.orkut2.R;
 import com.braincorp.orkut2.listeners.OnItemClickListener;
 import com.braincorp.orkut2.model.User;
+import com.braincorp.orkut2.utils.DateUtils;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-
-import static java.util.Calendar.DATE;
-import static java.util.Calendar.MONTH;
-import static java.util.Calendar.YEAR;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
 
@@ -44,8 +39,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
         User user = data.get(position);
         holder.textViewName.setText(user.getFullName());
         if (user.getDateOfBirth() != null) {
-            String ageText = String.format(context.getString(R.string.age),
-                    calculateAge(user.getDateOfBirth()));
+            String ageText = String.format(context.getString(R.string.age), DateUtils.getAge(user.getDateOfBirth()));
             holder.textViewAge.setText(ageText);
         }
     }
@@ -53,23 +47,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserHolder> {
     @Override
     public int getItemCount() {
         return data.size();
-    }
-
-    private int calculateAge(Date dateOfBirth) {
-        Calendar now = Calendar.getInstance();
-        Calendar target = getCalendar(dateOfBirth);
-        int age = now.get(YEAR) - target.get(YEAR);
-        if (target.get(MONTH) > now.get(MONTH) ||
-                (target.get(MONTH) == now.get(MONTH) && target.get(DATE) > now.get(DATE))) {
-            age--;
-        }
-        return age;
-    }
-
-    private Calendar getCalendar(Date date) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(date);
-        return calendar;
     }
 
     static class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

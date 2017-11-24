@@ -3,9 +3,10 @@
 
     <string name="add">adicionar</string>
     <string name="add_friends">adicionar amigos</string>
-    <string name="age">idade: %d</string>
+    <string name="age">idade: %d anos</string>
     <string name="create_account">criar conta</string>
     <string name="date_of_birth">data de nascimento</string>
+    <string name="date_of_birth_format">data de nascimento: %s</string>
     <string name="delete">excluir</string>
     <string name="delete_account">Excluir conta</string>
     <string name="error_creating_user">Erro ao criar usuário</string>
