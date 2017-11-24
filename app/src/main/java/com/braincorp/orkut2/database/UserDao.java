@@ -100,6 +100,15 @@ public class UserDao extends Dao {
         }
     }
 
+    public List<User> select(int[] ids) {
+        if (!reader.isOpen())
+            openDatabase();
+        List<User> users = new ArrayList<>();
+        for (int id : ids)
+            users.add(select(id));
+        return users;
+    }
+
     public User select(String userName, String password) {
         if (!reader.isOpen())
             openDatabase();
