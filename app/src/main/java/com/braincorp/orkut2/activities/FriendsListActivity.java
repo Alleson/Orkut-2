@@ -54,8 +54,8 @@ public class FriendsListActivity extends AppCompatActivity implements OnItemClic
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent = HomePageActivity.getIntent(this, user);
-            startActivity(intent);
+            finish();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }
