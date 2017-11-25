@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.braincorp.orkut2.R;
-import com.braincorp.orkut2.database.UserDao;
+import com.braincorp.orkut2.database.Database;
 import com.braincorp.orkut2.model.User;
 import com.braincorp.orkut2.utils.MatrixHandler;
 
@@ -25,8 +25,6 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
     private EditText editTextFullName;
     private EditText editTextDateOfBirth;
 
-    private UserDao database;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +33,6 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         setSupportActionBar(toolbar);
         setActionBar();
         bindViews();
-        database = UserDao.getInstance(this);
     }
 
     @Override
@@ -106,12 +103,9 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
         }
 
         User user = userBuilder.build();
-        boolean success = database.insert(user) > 0;
-        if (success){
-            MatrixHandler matrix = MatrixHandler.getInstance();
-            matrix.add(user);
-        }
-        return success;
+        Database.getInstance().insert(user);
+        MatrixHandler.getInstance().add(user);
+        return true;
     }
 
     private void setActionBar() {

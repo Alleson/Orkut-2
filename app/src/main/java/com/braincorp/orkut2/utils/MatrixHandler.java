@@ -4,7 +4,7 @@ import com.braincorp.orkut2.model.User;
 
 public class MatrixHandler {
 
-    private static final int EMPTY_SLOT = -1;
+    private static final int EMPTY_SLOT = 0;
     private static final int OCCUPIED_SLOT = 1;
 
     private static MatrixHandler instance;

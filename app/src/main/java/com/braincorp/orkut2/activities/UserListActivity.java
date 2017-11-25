@@ -12,14 +12,12 @@ import android.view.MenuItem;
 
 import com.braincorp.orkut2.R;
 import com.braincorp.orkut2.adapters.UserAdapter;
-import com.braincorp.orkut2.database.Sql;
-import com.braincorp.orkut2.database.UserDao;
+import com.braincorp.orkut2.database.Database;
 import com.braincorp.orkut2.listeners.OnItemClickListener;
 import com.braincorp.orkut2.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class UserListActivity extends AppCompatActivity implements OnItemClickListener {
 
@@ -36,7 +34,7 @@ public class UserListActivity extends AppCompatActivity implements OnItemClickLi
     private boolean showFriends;
     private RecyclerView recyclerView;
     private User user;
-    private UserDao database;
+    private Database database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +43,7 @@ public class UserListActivity extends AppCompatActivity implements OnItemClickLi
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setActionBar();
-        database = UserDao.getInstance(this);
+        database = Database.getInstance();
         bindViews();
         parseIntent();
         fillRecyclerView();
@@ -62,8 +60,8 @@ public class UserListActivity extends AppCompatActivity implements OnItemClickLi
 
     @Override
     public void onItemClick(int position) {
-        String sql = String.format(Locale.getDefault(), Sql.ALL_OTHER_USERS, this.user.getId());
-        List<User> users = database.select(sql);
+        final boolean excludeCurrentUser = true;
+        List<User> users = database.select(user, excludeCurrentUser);
         User user = null;
         for (int i = 0; i < users.size(); i++) {
             if (i == position) {
@@ -94,8 +92,8 @@ public class UserListActivity extends AppCompatActivity implements OnItemClickLi
         if (showFriends) {
             data = new ArrayList<>(); // TODO: implement show friends flow
         } else {
-            String sql = String.format(Locale.getDefault(), Sql.ALL_OTHER_USERS, user.getId());
-            data = database.select(sql);
+            final boolean excludeCurrentUser = true;
+            data = database.select(user, excludeCurrentUser);
         }
         UserAdapter adapter = new UserAdapter(this, data, this);
         recyclerView.setAdapter(adapter);

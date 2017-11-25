@@ -10,9 +10,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        def path = String.format('"/data/data/%s/databases/"', applicationId)
-        buildConfigField("String", "DB_PATH", path)
-        buildConfigField("String", "DB_NAME", '"database.db"')
     }
     buildTypes {
         release {
