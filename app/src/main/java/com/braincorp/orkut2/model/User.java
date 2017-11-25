@@ -22,7 +22,6 @@ public class User implements Parcelable {
         }
     };
 
-    private int id;
     private String userName;
     private String password;
     private String fullName;
@@ -31,19 +30,10 @@ public class User implements Parcelable {
     private User() { }
 
     private User(Parcel in) {
-        id = in.readInt();
         userName = in.readString();
         password = in.readString();
         fullName = in.readString();
         dateOfBirth = new Date(in.readLong());
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUserName() {
@@ -86,8 +76,7 @@ public class User implements Parcelable {
     @Override
     public String toString() {
         return "User {"+
-                "id = '" + id + '\'' +
-                ", userName = '" + userName + '\'' +
+                "userName = '" + userName + '\'' +
                 ", password = '" + password + '\'' +
                 ", fullName = '" + fullName + '\'' +
                 ", dateOfBirth = '" + dateOfBirth.getTime() + '\'' +
@@ -96,7 +85,6 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
-        parcel.writeInt(id);
         parcel.writeString(userName);
         parcel.writeString(password);
         parcel.writeString(fullName);
@@ -109,11 +97,6 @@ public class User implements Parcelable {
 
         public Builder() {
             user = new User();
-        }
-
-        public Builder setId(int id) {
-            user.setId(id);
-            return this;
         }
 
         public Builder setUserName(String userName) {

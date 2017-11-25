@@ -13,7 +13,6 @@ import android.widget.EditText;
 import com.braincorp.orkut2.R;
 import com.braincorp.orkut2.database.Database;
 import com.braincorp.orkut2.model.User;
-import com.braincorp.orkut2.utils.MatrixHandler;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -104,7 +103,6 @@ public class CreateUserActivity extends AppCompatActivity implements View.OnClic
 
         User user = userBuilder.build();
         Database.getInstance().insert(user);
-        MatrixHandler.getInstance().add(user);
         return true;
     }
 

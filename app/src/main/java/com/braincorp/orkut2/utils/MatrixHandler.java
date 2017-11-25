@@ -1,5 +1,6 @@
 package com.braincorp.orkut2.utils;
 
+import com.braincorp.orkut2.database.Database;
 import com.braincorp.orkut2.model.User;
 
 public class MatrixHandler {
@@ -19,9 +20,11 @@ public class MatrixHandler {
         return instance;
     }
 
+    private Database database;
     private int[][] matrix;
 
     private MatrixHandler() {
+        database = Database.getInstance();
         matrix = new int[50][50];
 
         for (int i = 0; i < matrix.length; i++) {
@@ -32,35 +35,19 @@ public class MatrixHandler {
     }
 
     /**
-     * Adds a user
-     */
-    public void add(User user) { // FIXME
-        for (int[] row : matrix) {
-            if (row[0] == EMPTY_SLOT) {
-                row[0] = user.getId();
-                break;
-            }
-        }
-    }
-
-    /**
      * Removes a user
      * @param user the user to be removed
-     * @return the ID of the user removed
      */
-    public int remove(User user) { // FIXME
-        for (int row = 0; row < matrix.length; row++) {
-            for (int column = 0; column < matrix.length; column++) {
-                if (matrix[row][column] == user.getId()) {
-                    matrix[row][column] = EMPTY_SLOT;
-                }
-            }
+    public void remove(User user) {
+        int index = database.getUserIndex(user);
+        for (int i = 0; i < matrix.length; i++) {
+            matrix[index][i] = EMPTY_SLOT;
+            matrix[i][index] = EMPTY_SLOT;
         }
-        return user.getId();
     }
 
     /**
-     * Get the matrix
+     * Gets the matrix
      * @return the adjacent matrix
      */
     public int[][] getMatrix() {
@@ -72,18 +59,12 @@ public class MatrixHandler {
      * @param loggedUser the user currently logged in
      * @param targetUser the user to be added
      */
-    public void addAsFriend(User loggedUser, User targetUser) { // FIXME
-        for (int i = 0; i < matrix.length; i++) {
-            if (matrix[i][0] == loggedUser.getId()) {
-                for (int j = 0; j < matrix.length; j++) {
-                    if (matrix[i][j] == EMPTY_SLOT) {
-                        matrix[i][j] = targetUser.getId();
-                        matrix[j][i] = targetUser.getId();
-                        return;
-                    }
-                }
-            }
-        }
+    public void add(User loggedUser, User targetUser) {
+        int a = database.getUserIndex(loggedUser);
+        int b = database.getUserIndex(targetUser);
+
+        matrix[a][b] = OCCUPIED_SLOT;
+        matrix[b][a] = OCCUPIED_SLOT;
     }
 
     /**
@@ -92,16 +73,11 @@ public class MatrixHandler {
      * @param targetUser the user to validate friendship status
      * @return {@code true} if positive
      */
-    public boolean areFriends(User loggedUser, User targetUser) { // FIXME
-        for (int[] row : matrix) {
-            if (row[0] == loggedUser.getId()) {
-                for (int id : row) {
-                    if (id == targetUser.getId())
-                        return true;
-                }
-            }
-        }
-        return false;
+    public boolean areFriends(User loggedUser, User targetUser) {
+        int a = database.getUserIndex(loggedUser);
+        int b = database.getUserIndex(targetUser);
+
+        return matrix[a][b] == OCCUPIED_SLOT && matrix[b][a] == OCCUPIED_SLOT;
     }
 
 }

@@ -25,6 +25,14 @@ public class Database {
         return users;
     }
 
+    public int getUserIndex(User user) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).equals(user))
+                return i;
+        }
+        return -1;
+    }
+
     public void insert(User user) {
         users.add(user);
     }
