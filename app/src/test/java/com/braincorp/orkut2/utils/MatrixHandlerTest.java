@@ -6,6 +6,9 @@ import com.braincorp.orkut2.model.User;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -72,6 +75,35 @@ public class MatrixHandlerTest {
     @Test
     public void shouldNotDisplayUsersAsFriends() {
         assertFalse(matrixHandler.areFriends(userA, userB));
+    }
+
+    @Test
+    public void shouldGetFriends() {
+        User userC = new User.Builder().setUserName("userc")
+                .setPassword("aaa")
+                .setFullName("User C").build();
+
+        User userD = new User.Builder().setUserName("userd")
+                .setPassword("aaa")
+                .setFullName("User D").build();
+
+        database.insert(userC);
+        database.insert(userD);
+
+        matrixHandler.add(userA, userB);
+        matrixHandler.add(userA, userD);
+
+        assertTrue(matrixHandler.areFriends(userA, userB));
+        assertTrue(matrixHandler.areFriends(userA, userD));
+        assertFalse(matrixHandler.areFriends(userA, userC));
+
+        List<User> expected = new ArrayList<>();
+        expected.add(userB);
+        expected.add(userD);
+
+        List<User> actual = matrixHandler.getFriends(userA);
+
+        assertEquals(expected, actual);
     }
 
 }

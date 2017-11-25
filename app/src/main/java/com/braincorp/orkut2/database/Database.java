@@ -21,10 +21,6 @@ public class Database {
         users = new ArrayList<>(50);
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
     public int getUserIndex(User user) {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).equals(user))
@@ -39,6 +35,14 @@ public class Database {
 
     public void delete(User user) {
         users.remove(user);
+    }
+
+    public List<User> select() {
+        return users;
+    }
+
+    public User select(int index) {
+        return users.get(index);
     }
 
     public List<User> select(User user, boolean excludeCurrentUser) {

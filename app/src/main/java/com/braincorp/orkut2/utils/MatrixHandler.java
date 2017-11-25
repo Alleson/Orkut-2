@@ -3,6 +3,9 @@ package com.braincorp.orkut2.utils;
 import com.braincorp.orkut2.database.Database;
 import com.braincorp.orkut2.model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MatrixHandler {
 
     private static final int EMPTY_SLOT = 0;
@@ -78,6 +81,26 @@ public class MatrixHandler {
         int b = database.getUserIndex(targetUser);
 
         return matrix[a][b] == OCCUPIED_SLOT && matrix[b][a] == OCCUPIED_SLOT;
+    }
+
+    /**
+     * Gets the friends of a user
+     * @param user the user
+     * @return the friends
+     */
+    public List<User> getFriends(User user) {
+        List<User> friends = new ArrayList<>();
+        int userIndex = database.getUserIndex(user);
+
+        int[] userRow = matrix[userIndex];
+        for (int i = 0; i < userRow.length; i++) {
+            if (userRow[i] == 1) {
+                User friend = database.select(i);
+                friends.add(friend);
+            }
+        }
+
+        return friends;
     }
 
 }
